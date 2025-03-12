@@ -1,7 +1,7 @@
 FROM golang:1.24-alpine
 WORKDIR /app
 
-RUN apk add --no-cache wget && \
+RUN apk add --no-cache make wget && \
   wget -O /wait-for https://raw.githubusercontent.com/eficode/wait-for/master/wait-for && \
   chmod +x /wait-for
 
