@@ -1,4 +1,6 @@
 version: '3.9'
+networks:
+  booking:
 services:
   db:
     container_name: db
@@ -11,3 +13,18 @@ services:
       - "5432:5432"
     volumes:
       - .docker/data:/var/lib/postgresql/data
+    networks:
+      - booking
+  go:
+    container_name: go
+    build:
+      context: .docker
+      dockerfile: go.dockerfile
+    volumes:
+      - .:/app
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    networks:
+      - booking

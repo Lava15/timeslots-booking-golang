@@ -6,7 +6,7 @@ import (
 	"net/http"
 
 	"github.com/gorilla/mux"
-	"github.com/lava15/timeslots-booking-golang/internal/db"
+	"github.com/lava15/timeslots-booking-golang/database/db"
 )
 
 func main() {
