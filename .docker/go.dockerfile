@@ -16,6 +16,11 @@ COPY . .
 ADD https://github.com/pressly/goose/releases/download/v3.24.1/goose_linux_x86_64 /bin/goose
 RUN chmod +x /bin/goose
 
+ARG UID=1000
+ARG GID=1000
+RUN addgroup -g $GID -S appgroup && adduser -u $UID -S appuser -G appgroup
+USER appuser
+
 CMD ["sh", "-c", "/wait-for db:5432 -- go run ./cmd/server/main.go"]
 
 
