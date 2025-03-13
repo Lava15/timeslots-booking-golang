@@ -11,7 +11,6 @@ import (
 
 func main() {
 	db.InitDB()
-	db.CreateTables()
 	r := mux.NewRouter()
 	slog.Info("Starting server...")
 	fmt.Println("Starting server...")
