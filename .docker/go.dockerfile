@@ -21,6 +21,4 @@ ARG GID=1000
 RUN addgroup -g $GID -S appgroup && adduser -u $UID -S appuser -G appgroup
 USER appuser
 
-CMD ["sh", "-c", "/wait-for db:5432 -- go run ./cmd/server/main.go"]
-
-
+CMD ["sh", "-c", "/wait-for db:5432 -- goose -dir /app/migrations postgres \"postgres://postgres:postgres@db:5432/booking?sslmode=disable\" up && go run ./cmd/server/main.go"]
