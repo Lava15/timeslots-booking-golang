@@ -1,10 +1,14 @@
 package models
 
-import "time"
+import (
+	"time"
 
-type slot struct {
-	ID         int       `json:"id"`
-	BusinessID int       `json:"business_id"`
+	"github.com/google/uuid"
+)
+
+type Slot struct {
+	ID         uuid.UUID `json:"id"`
+	BusinessID uuid.UUID `json:"business_id"`
 	StartTime  time.Time `json:"start_time"`
 	EndTime    time.Time `json:"end_time"`
 	Booked     bool      `json:"is_booked"`

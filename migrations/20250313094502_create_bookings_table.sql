@@ -1,9 +1,9 @@
 -- +goose Up
 -- +goose StatementBegin
 CREATE TABLE bookings (
-  id SERIAL PRIMARY KEY,
-  user_id INT NOT NULL REFERENCES users(id),
-  timeslot_id INT NOT NULL UNIQUE REFERENCES timeslots(id),
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  user_id UUID NOT NULL REFERENCES users(id),
+  timeslot_id UUID NOT NULL UNIQUE REFERENCES timeslots(id),
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   deleted_at TIMESTAMP
