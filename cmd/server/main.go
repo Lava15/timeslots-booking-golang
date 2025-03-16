@@ -2,7 +2,6 @@ package main
 
 import (
 	"context"
-	"errors"
 	"fmt"
 	"log/slog"
 	"net/http"
@@ -13,21 +12,14 @@ import (
 	"time"
 
 	"github.com/gorilla/mux"
-	"github.com/joho/godotenv"
+	"github.com/lava15/timeslots-booking-golang/config"
 	"github.com/lava15/timeslots-booking-golang/internal/db"
 )
 
 var wg sync.WaitGroup
 
 func main() {
-
-	if err := godotenv.Load(); err != nil {
-		if errors.Is(err, os.ErrNotExist) {
-			slog.Info("No .env file found")
-		} else {
-			slog.Error("Error loading .env file", err)
-		}
-	}
+	config.Init()
 	r := mux.NewRouter()
 	PORT := os.Getenv("PORT")
 	srv := http.Server{
