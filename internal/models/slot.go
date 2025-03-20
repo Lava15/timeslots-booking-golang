@@ -12,7 +12,7 @@ type Slot struct {
 	StartTime  time.Time `json:"start_time"`
 	EndTime    time.Time `json:"end_time"`
 	Booked     bool      `json:"is_booked"`
-	BookedBy   *int      `json:"booked_by"`
+	BookedBy   uuid.UUID `json:"booked_by"`
 	CreatedAt  time.Time `json:"created_at"`
 	UpdateAt   time.Time `json:"updated_at"`
 	DeleteAt   time.Time `json:"deleted_at,omitempty"`
