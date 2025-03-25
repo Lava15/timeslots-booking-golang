@@ -11,20 +11,20 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/gorilla/mux"
 	"github.com/lava15/timeslots-booking-golang/config"
 	"github.com/lava15/timeslots-booking-golang/internal/db"
+	"github.com/lava15/timeslots-booking-golang/internal/routes"
 )
 
 var wg sync.WaitGroup
 
 func main() {
 	config.Init()
-	r := mux.NewRouter()
+	router := routes.NewRouter()
 	PORT := os.Getenv("PORT")
 	srv := http.Server{
 		Addr:    ":" + PORT,
-		Handler: r,
+		Handler: router,
 	}
 	db.InitDB()
 
