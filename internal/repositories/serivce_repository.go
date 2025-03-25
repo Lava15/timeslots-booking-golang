@@ -1,18 +1,14 @@
 package repository
 
 import (
-	"encoding/json"
-	"net/http"
-
 	"github.com/lava15/timeslots-booking-golang/internal/db"
 	"github.com/lava15/timeslots-booking-golang/internal/models"
 )
 
-func GetAllServices(w http.ResponseWriter, r *http.Request) {
+func GetAllServices() ([]models.Service, error) {
 	rows, err := db.DB.Query(`SELECT * FROM services WHERE deleted_at IS NULL`)
 	if err != nil {
-		http.Error(w, "Failed to fetch services", http.StatusInternalServerError)
-		return
+		return nil, err
 	}
 	defer rows.Close()
 
@@ -21,11 +17,9 @@ func GetAllServices(w http.ResponseWriter, r *http.Request) {
 		var s models.Service
 		err := rows.Scan(&s.ID, &s.Name, &s.Description, &s.Slug, &s.Price, &s.CreatedAt, &s.UpdatedAt, &s.DeletedAt)
 		if err != nil {
-			http.Error(w, "Failed to fetch services", http.StatusInternalServerError)
-			return
+			return nil, err
 		}
 		services = append(services, s)
 	}
-	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(services)
+	return services, nil
 }

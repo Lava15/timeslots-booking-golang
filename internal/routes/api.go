@@ -4,6 +4,7 @@ import (
 	"net/http"
 
 	"github.com/gorilla/mux"
+	"github.com/lava15/timeslots-booking-golang/internal/handlers"
 )
 
 // Router struct embeds the Gorilla Mux router
@@ -18,6 +19,10 @@ func (r *Router) apiRoutes() {
 		w.WriteHeader(http.StatusOK)
 		w.Write([]byte("OK"))
 	})
+
+	//Services endpoints
+	serviceRouter := v1Router.PathPrefix("/services").Subrouter()
+	serviceRouter.HandleFunc("", handlers.GetServices).Methods(http.MethodGet)
 }
 
 func NewRouter() *Router {
