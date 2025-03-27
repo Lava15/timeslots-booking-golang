@@ -30,9 +30,9 @@ func GetService(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Failed to fetch service", http.StatusInternalServerError)
 		return
 	}
-	if service == nil {
-		http.Error(w, "Service not found", http.StatusNotFound)
-		return
-	}
 	response.JSON(w, http.StatusOK, service)
+}
+
+func CreateService(w http.ResponseWriter, r *http.Request) {
+
 }
