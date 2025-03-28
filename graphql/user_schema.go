@@ -18,3 +18,13 @@ func resolveUserByID(ur *repository.UserRepository) graphql.FieldResolveFn {
 		return ur.GetUserByID(id)
 	}
 }
+
+func NewSchema(ur *repository.UserRepository) (*graphql.Schema, error) {
+	userType := graphql.NewObject(graphql.ObjectConfig{})
+	queryType := graphql.NewObject(graphql.ObjectConfig{})
+	mutationType := graphql.NewObject(graphql.ObjectConfig{})
+	return graphql.NewSchema(graphql.SchemaConfig{
+		Query:    queryType,
+		Mutation: mutationType,
+	})
+}
