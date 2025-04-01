@@ -12,6 +12,7 @@ require (
 )
 
 require (
+	github.com/brianvoe/gofakeit/v7 v7.2.1 // indirect
 	github.com/graphql-go/graphql v0.8.1 // indirect
 	golang.org/x/crypto v0.36.0 // indirect
 )
