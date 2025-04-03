@@ -3,6 +3,7 @@ package utils
 import (
 	"time"
 
+	"github.com/brianvoe/gofakeit/v7"
 	"github.com/google/uuid"
 	"github.com/lava15/timeslots-booking-golang/internal/models"
 	"golang.org/x/crypto/bcrypt"
