@@ -40,8 +40,8 @@ func (r *UserRepository) CreateUser(u models.User) error {
 		deletedAt = u.DeletedAt
 	}
 	_, err := r.db.Exec(`
-		INSERT INTO user (id, email, password, is_admin, created_at, updated_at, deleted_at)
-		VALUES (?, ?, ?, ?, ?, ?, ?)`,
+		INSERT INTO users (id, email, password, is_admin, created_at, updated_at, deleted_at)
+		VALUES ($1, $2, $3, $4, $5, $6, $7)`,
 		u.ID, u.Email, u.Password, u.IsAdmin, u.CreatedAt, u.UpdatedAt, deletedAt)
 
 	return err
